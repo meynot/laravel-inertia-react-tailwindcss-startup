@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect, FormEvent } from 'react';
 import { Link, usePage, router } from '@inertiajs/react';
 //import { useRoute } from '@tightenco/ziggy';
 
-function rowAction(prop) {
+function rowAction(rowid, props) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const trigger = useRef<HTMLButtonElement>(null);
   const dropdown = useRef<HTMLDivElement>(null);
-  const id = prop.id;
+ 
   const auth = usePage().props as any;
 
   // close on click outside
@@ -71,7 +71,7 @@ function rowAction(prop) {
             onBlur={() => setDropdownOpen(false)}
           >
             <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200">
-              <Link href={useRoute('users', {id})} className="flex items-center px-3 py-1 text-sm font-medium text-green-400 hover:text-green-700">View</Link>
+              <Link href={useRoute('users', {rowid})} className="flex items-center px-3 py-1 text-sm font-medium text-green-400 hover:text-green-700">View</Link>
             </div>
             <ul>
               <li>

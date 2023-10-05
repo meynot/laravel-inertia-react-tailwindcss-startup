@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use Spatie\Permission\Traits\HasRoles;
+
+use Carbon\Carbon;
+
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +25,10 @@ class User extends Authenticatable
         'email',
         'password',
         'photo_name',
+
+        'dob',
+        'avatar',
+        'note'
     ];
 
     /**
@@ -40,5 +48,19 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'dob' => 'date:d/m/Y'
     ];
+
+
+
+    public function geetDobAttribute($dob)
+    {
+        return $this->attributes['dob'] = Carbon::parse($dob)->format('d/m/Y');
+    }
+
+    public function geetAvatarAttribute($avatar)
+    {
+        return $this->attributes['avatar'] = '<img src="'.$avatar.'" width="100" />';
+    }
+
 }

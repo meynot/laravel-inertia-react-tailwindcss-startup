@@ -4,8 +4,8 @@ import Layout from "/resources/ts/layouts/Layout";
 import Pagination from '/resources/ts/layouts//Layout/components/Pagination';
 import RowActions from '../components/rowactions';
 
-function UserIndex({props}) {
-  const { rows } = usePage().props
+function UserIndex({rows, props}) {
+  //const rows = usePage().props
   return (
     <Layout>
       <Head title="Users index" />
